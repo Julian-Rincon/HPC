@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.pyo
+
+.pytest_cache/
+.coverage
+
+frames_video_original/
+frames_video_result_secuencial/
+frames_video_result_paralelo/
+tiempos_secuencial.txt
+tiempos_paralelo.txt
