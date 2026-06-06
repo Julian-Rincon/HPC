@@ -1,81 +1,113 @@
-# HPC
+# High Performance Computing
 
-Repositorio principal del curso de Computación de Alto Rendimiento. La rama `main` centraliza las entregas de los talleres en una sola estructura, con código, evidencias y documentación organizados por actividad.
+**Four parallel computing workshops benchmarking sequential vs. parallel execution across CPU-bound, image processing, video processing, and distributed computing problems.**
 
-## Integrantes
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/Docker-Swarm-2496ED.svg)](https://docs.docker.com/engine/swarm/)
+[![Flask](https://img.shields.io/badge/API-Flask-black.svg)](https://flask.palletsprojects.com/)
 
-- Julian Rincón
-- Paula Caballero
+---
 
-## Estructura del repositorio
+## Overview
+
+Each workshop implements the same problem twice — sequential and parallel — and measures speedup, CPU utilization, and execution time. The final workshop scales the solution to a distributed architecture using Docker Swarm with a Flask API backend and Python client.
+
+---
+
+## Repository Structure
 
 ```text
 HPC/
-├── taller-1-tsp-fuerza-bruta/
-├── taller-2-deteccion-bordes-sobel/
-├── taller-3-procesamiento-video/
-└── taller-4-tsp-distribuido/
+├── taller-1-tsp-fuerza-bruta/       # TSP brute force: sequential vs parallel
+├── taller-2-deteccion-bordes-sobel/ # Sobel edge detection: sequential vs parallel
+├── taller-3-procesamiento-video/    # Video grayscale: sequential vs parallel
+└── taller-4-tsp-distribuido/        # Distributed TSP with Docker Swarm + Flask API
 ```
 
-## Talleres incluidos
+---
 
-### 1. TSP por fuerza bruta
+## Workshops
 
-Ruta: `taller-1-tsp-fuerza-bruta/`
+### 1. TSP Brute Force
 
-- Implementación secuencial y paralela del problema del viajante
-- Archivo principal: `tsp_bruteforce.py`
-- Documento de apoyo: `HPC_Tsp.pdf`
+`taller-1-tsp-fuerza-bruta/`
 
-### 2. Detección de bordes con Sobel
+Sequential and parallel implementations of the Travelling Salesman Problem using brute force enumeration. Benchmark comparison measures execution time reduction from multiprocessing.
 
-Ruta: `taller-2-deteccion-bordes-sobel/`
+- `tsp_bruteforce.py` — sequential + parallel implementations
+- `HPC_Tsp.pdf` — benchmark report
 
-- Comparación entre versión secuencial y paralela en CPU
-- Scripts principales:
-  - `CPU-Secuencial.py`
-  - `CPU-Paralelo.py`
-  - `Comparador Secuencial vs Paralelo.py`
-- Evidencias generadas en `Resultados/`
+### 2. Sobel Edge Detection
 
-### 3. Procesamiento de video a escala de grises
+`taller-2-deteccion-bordes-sobel/`
 
-Ruta: `taller-3-procesamiento-video/`
+Sobel convolution filter applied to images in sequential and parallel modes on CPU. Results compare frame processing times and visual output quality.
 
-- Conversión de video color a escala de grises
-- Comparación entre procesamiento secuencial y paralelo
-- Scripts principales:
-  - `video_processor_Secuencial.py`
-  - `video_processor_Paralelo.py`
-  - `comparacion_resultados.py`
+- `CPU-Secuencial.py` — sequential Sobel
+- `CPU-Paralelo.py` — parallel Sobel
+- `Comparador Secuencial vs Paralelo.py` — benchmark runner
+- `Resultados/` — generated output images and timing evidence
 
-### 4. TSP distribuido con Docker Swarm
+### 3. Video Grayscale Processing
 
-Ruta: `taller-4-tsp-distribuido/`
+`taller-3-procesamiento-video/`
 
-- Solución distribuida cliente-servidor para TSP
-- API Flask desplegable con Docker
-- Cliente Python para evaluar rutas por fuerza bruta
-- Código base en `tsp_solution/`
+Frame-by-frame grayscale conversion on a video file, comparing sequential processing against parallel workers. Measures total conversion time and frames-per-second throughput.
 
-## Requisitos generales
+- `video_processor_Secuencial.py` — sequential version
+- `video_processor_Paralelo.py` — parallel version
+- `comparacion_resultados.py` — result comparison and visualization
 
-- Python 3.9 o superior
-- `pip`
-- Dependencias específicas por taller indicadas en cada carpeta
-- Docker Desktop con Swarm habilitado para el Taller 4
+### 4. Distributed TSP with Docker Swarm
 
-## Ejecución rápida
+`taller-4-tsp-distribuido/`
+
+TSP brute force distributed across a Docker Swarm cluster. A Flask REST API receives route evaluation requests from a Python client and dispatches work across worker nodes. Demonstrates horizontal scaling and load distribution.
+
+- Flask API deployable as a Docker service
+- Python client for route evaluation
+- Source in `tsp_solution/`
+
+---
+
+## Requirements
+
+- Python 3.9+
+- Docker Desktop with Swarm mode enabled (Workshop 4 only)
+- Per-workshop dependencies listed in each folder's `README.md`
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Quick Start
 
 ```bash
 git clone git@github.com:Julian-Rincon/HPC.git
 cd HPC
 ```
 
-Después, entra al taller que quieras ejecutar y sigue su `README.md`.
+Navigate to the workshop folder and follow its `README.md`.
 
-## Notas de organización
+---
 
-- La documentación ya no está separada por ramas.
-- Cada taller tiene su propia carpeta y su propio `README.md`.
-- La rama `main` queda como punto de entrada único del proyecto.
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python 3.9+ |
+| Parallelism | `multiprocessing`, `concurrent.futures` |
+| Distributed | Docker Swarm, Docker Compose |
+| API | Flask |
+| Visualization | Matplotlib, OpenCV |
+
+---
+
+## Authors
+
+- **Julian Rincon** — [github.com/Julian-Rincon](https://github.com/Julian-Rincon)
+- Paula Caballero
+
+*Universidad Sergio Arboleda — High Performance Computing*
