@@ -108,6 +108,6 @@ Navigate to the workshop folder and follow its `README.md`.
 ## Authors
 
 - **Julian Rincon** — [github.com/Julian-Rincon](https://github.com/Julian-Rincon)
-- Paula Caballero
+- **Paula Caballero** — [github.com/Pauc09](https://github.com/Pauc09)
 
 *Universidad Sergio Arboleda — High Performance Computing*
